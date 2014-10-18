@@ -4,6 +4,24 @@ if (!isset($_POST['generate'])) {
 	exit();
 }
 
+/***/
+
+/* Code knocked up very quickly, and in a rush.
+ * Ugly short-cuts taken everywhere.  You've been warned!
+ */
+
+define ('DOTS', '.......................');
+
+(empty($_POST['nok']['name'])) 			&& $_POST['nok']['name'] 		= DOTS;
+(empty($_POST['nok']['relation']))		&& $_POST['nok']['relation'] 	= DOTS;
+(empty($_POST['nok']['tel'])) 			&& $_POST['nok']['tel'] 		= DOTS;
+(empty($_POST['nok']['address'])) 		&& $_POST['nok']['address'] 	= DOTS;
+(empty($_POST['mai']['name'])) 			&& $_POST['mai']['name'] 		= DOTS;
+(empty($_POST['mai']['dob'])) 			&& $_POST['mai']['dob'] 		= DOTS;
+(empty($_POST['mai']['alert'])) 		&& $_POST['mai']['alert'] 		= 'N/A - no medical alerts';
+
+/***/
+
 require_once ('fpdf.php');
 
 $pdf = new fpdf('P', 'mm', 'A4');
@@ -73,11 +91,7 @@ $pdf->SetFont('Arial', 'B', 10);
 $pdf->SetTextColor(255, 0, 0);
 $pdf->Cell(90, 6, "Medical alert:", 0, 1, 'C');
 $pdf->SetFont('Arial', '', 10);
-if (trim($_POST['mai']) != '') {
-	$pdf->MultiCell(90, 6, $_POST['mai']['alert'], 0, 'C');
-} else {
-	$pdf->MultiCell(90, 6, 'N/A - no medical alerts', 0, 'C');
-}
+$pdf->MultiCell(90, 6, $_POST['mai']['alert'], 0, 'C');
 
 /***/
 
