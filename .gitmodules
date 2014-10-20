@@ -1,0 +1,3 @@
+[submodule "externals/Sharrre"]
+	path = externals/Sharrre
+	url = git@github.com:fran-diaz/Sharrre.git
